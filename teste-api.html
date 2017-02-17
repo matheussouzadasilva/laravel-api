@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Listagem Produtos API RestFul Laravel 5.4</title>
+	</head>
+
+	<body>
+		<button id="btn_request">Enviar</button>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+		<!-- Teste com fim de avaliar se a API esta respondendo corretamente requisições externas (outros domínios).
+		Para isto foi utilizado o pacote laravel-cors que libera as requisições externas, daria para fazer isto configurando
+		no apache mais isto não é recomendado por questões de segurança.
+		-->
+		<script type="text/javascript">
+			jQuery(function(){
+				jQuery('#btn_request').click(function(){
+					var token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdDo4MDgwXC9jdXJzb3NcL2xhcmF2ZWwtYXBpXC9wdWJsaWNcL2FwaVwvdjFcL2F1dGgiLCJpYXQiOjE0ODcyMjI1MzYsImV4cCI6MTQ4NzIyNjEzNiwibmJmIjoxNDg3MjIyNTM2LCJqdGkiOiIwYzdhOGRjZjk1NDVkNWQ3YTc1NTZkNmM5OGU0MTkzZiJ9.pgMGjtblJUFSXLtspbJ8ifU_k4uHhAunNBq3AGnSfNE';
+
+					headerParams = {'Authorization':'bearer '+token};
+
+					jQuery.ajax({
+						url : 'http://localhost:8080/cursos/laravel-api/public/api/v1/products',
+						method : 'GET',
+						headers: headerParams
+					}).done(function(data){
+						alert('sucesso...');
+
+						console.log(data);
+					}).fail(function(data){
+						alert('falhou...');
+					});
+				});
+			});
+		</script>
+	</body>
+</html>
