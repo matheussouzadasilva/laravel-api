@@ -37,8 +37,8 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
-
+        $data = $request->json()->all();
+        
         $validate = validator($data, $this->product->rules());
 
         if ( $validate->fails() ) {
@@ -85,7 +85,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = $request->all();
+        $data = $request->json()->all();
 
         $validate = validator($data, $this->product->rules($id));
 
