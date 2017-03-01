@@ -11,13 +11,13 @@ class Tecnico extends Model
     protected $table = 'tecnico'; //caso eu quizer especificar o nome da tabela do banco a mao
     protected $primaryKey  = 'codigo_tecnico'; //caso eu quizer especificar o nome da primary key da tabela do banco a mao
 
-    protected $fillable = ['nome']; // campos que são permitidos gravar
+    protected $fillable = ['nome', 'data_nascimento']; // campos que são permitidos gravar
 
     public function rules($codigo_tecnico = '')
     {
     	return [
     		'nome' 		       => "required|min:3|max:30|unique:tecnico,nome,{$codigo_tecnico},codigo_tecnico",
-            'data_nascimento'  => "required|min:3|max:30|unique:tecnico,data_nascimento,{$codigo_tecnico},codigo_tecnico"
+            'data_nascimento'  => "required|min:3|max:30|date:tecnico,data_nascimento"
     	];
     }
 
