@@ -33,3 +33,30 @@ $factory->define(App\Models\Product::class, function (Faker\Generator $faker) {
         'description' => $faker->sentence(),
     ];
 });
+
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\Categoria::class, function (Faker\Generator $faker) {
+    static $password;
+
+    return [
+        'nome' => $faker->word,
+    ];
+});
+
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\Divisao::class, function (Faker\Generator $faker) {
+    static $password;
+
+    return [
+        'nome' => $faker->word,
+    ];
+});
+
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\Tecnico::class, function (Faker\Generator $faker) {
+    static $password;
+
+    return [
+        'nome' => $faker->word,
+    ];
+});

@@ -27,6 +27,15 @@ $this->group(['prefix' => 'v1'], function(){
 		$this->get('products/search', 'API\V1\ProductController@search');
 		$this->resource('products', 'API\V1\ProductController', $except);
 
+		$this->get('categorias/search', 'API\V1\CategoriaController@search');
+		$this->resource('categorias', 'API\V1\CategoriaController', $except);
+
+		$this->get('divisaos/search', 'API\V1\DivisaoController@search');
+		$this->resource('divisaos', 'API\V1\DivisaoController', $except);
+
+		$this->get('tecnicos/search', 'API\V1\TecnicoController@search');
+		$this->resource('tecnicos', 'API\V1\TecnicoController', $except);
+
 		Route::middleware('auth:api')->get('/user', function (Request $request) {
 		    return $request->user();
 		});

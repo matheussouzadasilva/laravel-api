@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class ProductsTableSeeder extends Seeder
+class TecnicoTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,8 +11,8 @@ class ProductsTableSeeder extends Seeder
      */
     public function run()
     {
-    	$numeroRegCriados = 10;
+        $numeroRegCriados = 10;
 
-        factory(\App\Models\Product::class, $numeroRegCriados)->create();
+        factory(\App\Models\Tecnico::class, $numeroRegCriados)->create();
     }
 }
