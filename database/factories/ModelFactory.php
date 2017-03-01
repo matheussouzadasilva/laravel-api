@@ -58,5 +58,6 @@ $factory->define(App\Models\Tecnico::class, function (Faker\Generator $faker) {
 
     return [
         'nome' => $faker->word,
+        'data_nascimento' => $faker->date,
     ];
 });

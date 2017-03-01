@@ -16,7 +16,8 @@ class Tecnico extends Model
     public function rules($codigo_tecnico = '')
     {
     	return [
-    		'nome' 		  => "required|min:3|max:30|unique:tecnico,nome,{$codigo_tecnico},codigo_tecnico"
+    		'nome' 		       => "required|min:3|max:30|unique:tecnico,nome,{$codigo_tecnico},codigo_tecnico",
+            'data_nascimento'  => "required|min:3|max:30|unique:tecnico,data_nascimento,{$codigo_tecnico},codigo_tecnico"
     	];
     }
 

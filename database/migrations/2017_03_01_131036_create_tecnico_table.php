@@ -16,6 +16,7 @@ class CreateTecnicoTable extends Migration
         Schema::create('tecnico', function (Blueprint $table) {
             $table->increments('codigo_tecnico');
             $table->string('nome', 30)->unique();
+            $table->date('data_nascimento');
             $table->timestamps();
         });
     }

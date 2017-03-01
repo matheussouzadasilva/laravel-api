@@ -44,7 +44,7 @@ class CategoriaController extends Controller
         if ( $validate->fails() ) {
             $messages = $validate->messages();
 
-            return response()->json(['validate.error' => $messages], 422);
+            return response()->json(['validate_error' => $messages], 422);
         }
         if (!$insert = $this->categoria->create($data) ) {
             return response()->json(['error' => 'error_insert'], 500);
@@ -92,7 +92,7 @@ class CategoriaController extends Controller
         if ( $validate->fails() ) {
             $messages = $validate->messages();
 
-            return response()->json(['validate.error' => $messages], 422);
+            return response()->json(['validate_error' => $messages], 422);
         }
 
         if( !$categoria = $this->categoria->find($id)) {
@@ -141,7 +141,7 @@ class CategoriaController extends Controller
         if ( $validate->fails() ) {
             $messages = $validate->messages();
 
-            return response()->json(['validate.error' => $messages], 422);
+            return response()->json(['validate_error' => $messages], 422);
         }
 
         //->where('name', 'LIKE', $data['key-search'])
