@@ -17,7 +17,7 @@ RestFull Api em laravel 5.4
 - Criar banco de dados com nome qualquer com a codificação "utf8mb4_unicode_ci" e fazer todas as configurações necessárias no arquivo .env
 - Para criar as tabelas executar o comando "php artisan migrate" no diretório principal da aplicação
 - Caso precisar criar de novo as tabelas e preencher com dados , executar o comando "php artisan migrate:refresh --seed" no diretório principal da aplicação
-- Para para inserir um usuario, produtos, categorias nas tabelas executar o comando  "php artisan db:seed"  no diretório principal da aplicação
+- Para para inserir um usuário, produtos, categorias nas tabelas executar o comando  "php artisan db:seed"  no diretório principal da aplicação
 
 Meu perfil no linkedin(http://br.linkedin.com/in/matheussilvaphp)
 
