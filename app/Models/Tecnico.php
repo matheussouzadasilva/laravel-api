@@ -17,7 +17,7 @@ class Tecnico extends Model
     {
     	return [
     		'nome' 		       => "required|min:3|max:30|unique:tecnico,nome,{$codigo_tecnico},codigo_tecnico",
-            'data_nascimento'  => "required|min:3|max:30|date:tecnico,data_nascimento"
+            'data_nascimento'  => "required|min:8|max:10|date:tecnico,data_nascimento"
     	];
     }
 
