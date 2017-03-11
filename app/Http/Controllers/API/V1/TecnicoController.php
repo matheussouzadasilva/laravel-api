@@ -96,7 +96,7 @@ class TecnicoController extends Controller
         }
 
         if( !$tecnico = $this->tecnico->find($id)) {
-            dd("sadsadasd");
+            //dd("sadsadasd");
             return response()->json(['error' => 'tecnico_not_found'], 404);
         }
 

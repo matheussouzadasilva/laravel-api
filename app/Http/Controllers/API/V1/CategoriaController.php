@@ -96,7 +96,7 @@ class CategoriaController extends Controller
         }
 
         if( !$categoria = $this->categoria->find($id)) {
-            dd("sadsadasd");
+            //dd("sadsadasd");
             return response()->json(['error' => 'categoria_not_found'], 404);
         }
 
