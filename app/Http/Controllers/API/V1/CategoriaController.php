@@ -26,7 +26,7 @@ class CategoriaController extends Controller
         //$categorias = $this->categoria->all(); // retorna tudo sem paginação
         $categorias = $this->categoria->paginate($this->regPerPage); // retorna tudo com paginação
 
-        return response()->json(['data' => $categorias], 200);
+        return response()->json(['categorias' => $categorias], 200);
     }
 
     /**
@@ -50,7 +50,7 @@ class CategoriaController extends Controller
             return response()->json(['error' => 'error_insert'], 500);
         }
             
-        return response()->json(['data' => $insert], 201);
+        return response()->json(['categorias' => $insert], 201);
     }
 
     /**
@@ -71,7 +71,7 @@ class CategoriaController extends Controller
             return response()->json(['error' => 'not_found'], 404);
         }
 
-        return response()->json(['data' => $categoria]);
+        return response()->json($categoria);
     }
 
 
@@ -148,6 +148,6 @@ class CategoriaController extends Controller
 
         $categorias = $this->categoria->search($data, $this->regPerPage);
 
-        return response()->json(['data' => $categorias]);
+        return response()->json(['categorias' => $categorias]);
     }
 }

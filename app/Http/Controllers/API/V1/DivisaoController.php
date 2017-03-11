@@ -17,24 +17,24 @@ class DivisaoController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    * Display a listing of the resource.
+    *
+    * @return \Illuminate\Http\Response
+    */
     public function index()
     {
         //$divisaos = $this->divisao->all(); // retorna tudo sem paginação
         $divisaos = $this->divisao->paginate($this->regPerPage); // retorna tudo com paginação
 
-        return response()->json(['data' => $divisaos], 200);
+        return response()->json(['divisaos' => $divisaos], 200);
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    * Store a newly created resource in storage.
+    *
+    * @param  \Illuminate\Http\Request  $request
+    * @return \Illuminate\Http\Response
+    */
     public function store(Request $request)
     {
         $data = $request->json()->all();
@@ -50,15 +50,15 @@ class DivisaoController extends Controller
             return response()->json(['error' => 'error_insert'], 500);
         }
             
-        return response()->json(['data' => $insert], 201);
+        return response()->json(['divisaos' => $insert], 201);
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    * Display the specified resource.
+    *
+    * @param  int  $id
+    * @return \Illuminate\Http\Response
+    */
     public function show($id)// Divisao $divisao
     {
         //model bind - esse comando abaixo para pegar os dados do produto por id 
@@ -71,18 +71,16 @@ class DivisaoController extends Controller
             return response()->json(['error' => 'not_found'], 404);
         }
 
-        return response()->json(['data' => $divisao]);
+        return response()->json($divisao, 200);
     }
 
-
-
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    * Update the specified resource in storage.
+    *
+    * @param  \Illuminate\Http\Request  $request
+    * @param  int  $id
+    * @return \Illuminate\Http\Response
+    */
     public function update(Request $request, $id)
     {
         $data = $request->json()->all();
@@ -96,7 +94,7 @@ class DivisaoController extends Controller
         }
 
         if( !$divisao = $this->divisao->find($id)) {
-            dd("sadsadasd");
+            //dd("sadsadasd");
             return response()->json(['error' => 'divisao_not_found'], 404);
         }
 
@@ -108,11 +106,11 @@ class DivisaoController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    * Remove the specified resource from storage.
+    *
+    * @param  int  $id
+    * @return \Illuminate\Http\Response
+    */
     public function destroy($id)
     {
         if( !$divisao = $this->divisao->find($id)) {
@@ -123,15 +121,14 @@ class DivisaoController extends Controller
             return response()->json(['error' => 'divisao_not_delete', 500]);
         }
 
-        return response()->json(['response' => $delete]);
+        return response()->json(['response' => $delete], 200);
     }
 
-
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    * Display a listing of the resource.
+    *
+    * @return \Illuminate\Http\Response
+    */
     public function search(Request $request)
     {
         $data = $request->all();
@@ -148,6 +145,6 @@ class DivisaoController extends Controller
 
         $divisaos = $this->divisao->search($data, $this->regPerPage);
 
-        return response()->json(['data' => $divisaos]);
+        return response()->json(['divisaos' => $divisaos], 200);
     }
 }

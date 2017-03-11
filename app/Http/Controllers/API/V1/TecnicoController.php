@@ -26,7 +26,7 @@ class TecnicoController extends Controller
         //$tecnicos = $this->tecnico->all(); // retorna tudo sem paginação
         $tecnicos = $this->tecnico->paginate($this->regPerPage); // retorna tudo com paginação
 
-        return response()->json(['data' => $tecnicos], 200);
+        return response()->json(['tecnicos' => $tecnicos], 200);
     }
 
     /**
@@ -50,7 +50,7 @@ class TecnicoController extends Controller
             return response()->json(['error' => 'error_insert'], 500);
         }
             
-        return response()->json(['data' => $insert], 201);
+        return response()->json(['tecnicos' => $insert], 201);
     }
 
     /**
@@ -71,7 +71,7 @@ class TecnicoController extends Controller
             return response()->json(['error' => 'not_found'], 404);
         }
 
-        return response()->json(['data' => $tecnico]);
+        return response()->json($tecnico);
     }
 
 
@@ -148,6 +148,6 @@ class TecnicoController extends Controller
 
         $tecnicos = $this->tecnico->search($data, $this->regPerPage);
 
-        return response()->json(['data' => $tecnicos]);
+        return response()->json(['tecnicos' => $tecnicos]);
     }
 }
