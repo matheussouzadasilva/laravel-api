@@ -27,6 +27,7 @@ $this->group(['prefix' => 'v1'], function(){
 		$this->get('products/search', 'API\V1\ProductController@search');
 		$this->resource('products', 'API\V1\ProductController', $except);
 
+		$this->get('logado', 'API\V1\CategoriaController@logado');
 		$this->get('categorias/search', 'API\V1\CategoriaController@search');
 		$this->resource('categorias', 'API\V1\CategoriaController', $except);
 

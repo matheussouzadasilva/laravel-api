@@ -150,4 +150,5 @@ class TecnicoController extends Controller
 
         return response()->json(['tecnicos' => $tecnicos]);
     }
+    
 }
