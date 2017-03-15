@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 //versao 1 da API
 $this->group(['prefix' => 'v1'], function(){
 
+	$this->post('cadusuario', 'Auth\RegisterController@criar');
 	$this->post('auth', 'Auth\AuthApiController@authenticate');
 	$this->post('auth-refresh', 'Auth\AuthApiController@refreshToken');
 
@@ -24,10 +25,12 @@ $this->group(['prefix' => 'v1'], function(){
 		//$only = ['only' => ['index', 'store', 'show', 'update', 'destroy']];  //quais metodos vão ser utilizados
 		$except = ['except' => ['create', 'edit']];  //quais metodos não vão ser utilizados
 
+		$this->get('logado', 'Auth\AuthApiController@logado');
+		$this->get('logout', 'Auth\AuthApiController@logout');
+
 		$this->get('products/search', 'API\V1\ProductController@search');
 		$this->resource('products', 'API\V1\ProductController', $except);
 
-		$this->get('logado', 'API\V1\CategoriaController@logado');
 		$this->get('categorias/search', 'API\V1\CategoriaController@search');
 		$this->resource('categorias', 'API\V1\CategoriaController', $except);
 
@@ -40,6 +43,6 @@ $this->group(['prefix' => 'v1'], function(){
 		Route::middleware('auth:api')->get('/user', function (Request $request) {
 		    return $request->user();
 		});
-	
+				
 	});
 });

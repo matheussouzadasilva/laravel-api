@@ -7,10 +7,37 @@ use Illuminate\Http\Request;
 use JWTAuth; // USE usando facade para simplificar e nao digitar todo o caminho
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Exceptions\TokenInvalidException;
+use Illuminate\Support\Facades\Auth;
 
 class AuthApiController extends Controller
 {
-   public function authenticate(Request $request)
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function logado()
+    {
+        if (!Auth::check()) {
+            return response()->json(null, 401);
+        }
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function logout()
+    {
+        Auth::logout();
+
+        if (!Auth::check()) {
+            return response()->json(null, 401);
+        }
+    }
+    
+    public function authenticate(Request $request)
     {
         // grab credentials from the request
         $credentials = $request->only('email', 'password');

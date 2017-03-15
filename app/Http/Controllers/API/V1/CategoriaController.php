@@ -5,7 +5,6 @@ namespace App\Http\Controllers\API\V1;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Categoria;
-use Illuminate\Support\Facades\Auth;
 
 class CategoriaController extends Controller
 {
@@ -107,7 +106,7 @@ class CategoriaController extends Controller
 
         return response()->json(['response' => $update], 200);
     }
-
+    
     /**
      * Remove the specified resource from storage.
      *
@@ -126,8 +125,7 @@ class CategoriaController extends Controller
 
         return response()->json(['response' => $delete]);
     }
-
-
+    
     /**
      * Display a listing of the resource.
      *
@@ -150,19 +148,5 @@ class CategoriaController extends Controller
         $categorias = $this->categoria->search($data, $this->regPerPage);
 
         return response()->json(['categorias' => $categorias]);
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function logado()
-    {
-        if (Auth::check()) {
-            return response()->json(null, 200);
-        } 
-
-        return response()->json(null, 401);
     }
 }

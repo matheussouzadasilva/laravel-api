@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -67,5 +68,47 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function valida($id = '')
+    {
+        return  [
+            'name' => "required|min:3|max:255|unique:users,name,{$id},id",
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|min:6|confirmed',
+            'password_confirmation' => 'required|min:6'
+        ];
+    }
+
+    public function criar(Request $request)
+    {
+        $data = $request->json()->all();
+        
+        $validate = validator($data, $this->valida());
+
+        if ( $validate->fails() ) {
+            $messages = $validate->messages();
+
+            return response()->json(['validate_error' => $messages], 422);
+        }
+
+        $data = [
+            'name'      => $data["name"],
+            'email'     => $data["email"],
+            'password'  => bcrypt($data["password"]),
+        ];
+
+        if (!$insert = \App\User::create($data)) {
+            return response()->json(['error' => 'error_insert'], 500);
+        }
+            
+        return response()->json(['usuario' => $insert], 201);
     }
 }
