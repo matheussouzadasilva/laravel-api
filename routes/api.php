@@ -20,13 +20,13 @@ $this->group(['prefix' => 'v1'], function(){
 	$this->post('auth', 'Auth\AuthApiController@authenticate');
 	$this->post('auth-refresh', 'Auth\AuthApiController@refreshToken');
 
-	$this->group(['middleware' => 'jwt.auth'], function(){
-
+	$this->group(['middleware' => 'jwt.auth'], function() {
 		//$only = ['only' => ['index', 'store', 'show', 'update', 'destroy']];  //quais metodos vão ser utilizados
 		$except = ['except' => ['create', 'edit']];  //quais metodos não vão ser utilizados
 
 		$this->get('logado', 'Auth\AuthApiController@logado');
 		$this->get('logout', 'Auth\AuthApiController@logout');
+		$this->post('altsenhalog', 'Auth\AuthApiController@alterarsenha');
 
 		$this->get('products/search', 'API\V1\ProductController@search');
 		$this->resource('products', 'API\V1\ProductController', $except);

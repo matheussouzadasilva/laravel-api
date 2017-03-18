@@ -8,6 +8,7 @@ use JWTAuth; // USE usando facade para simplificar e nao digitar todo o caminho
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Exceptions\TokenInvalidException;
 use Illuminate\Support\Facades\Auth;
+use App\User;
 
 class AuthApiController extends Controller
 {
@@ -69,5 +70,58 @@ class AuthApiController extends Controller
         }
 
         return response()->json(compact('token'));
+    }
+
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validasenha()
+    {
+        return  [
+            'password_current' => 'required|min:6',//senha atual
+            'password' => 'required|min:6|confirmed',//nova senha
+            'password_confirmation' => 'required|min:6'//confirmacao nova senha
+        ];
+    }
+
+    /**
+     * altera a senha do usuario que esta logado
+     *
+     */
+    public function alterarsenha(Request $request)
+    {
+        if (!Auth::check()) {
+            return response()->json(null, 401);
+        }
+
+        $data = $request->json()->all();
+
+        $validate = validator($data, $this->validasenha());
+
+        if ($validate->fails()) {
+            $messages = $validate->messages();
+
+            return response()->json(['validate_error' => $messages], 422);
+        }
+
+        $check = auth()->validate([
+            'password' => $data["password_current"] 
+        ]);
+
+        if (!$check) {
+            return response()->json(['error' => 'password_current_invalid'], 422);
+        }
+
+        $id = Auth::id();
+        $user = User::find($id);
+        $user->password = bcrypt($data["password"]); 
+
+        if (!$user->save()) {
+            return response()->json(['error' => 'error_update_password'], 500);
+        }
+
+        return response()->json(null, 200);
     }
 }
