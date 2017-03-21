@@ -186,6 +186,11 @@ return [
         * CORS
         */
         Barryvdh\Cors\ServiceProvider::class,
+
+        /*
+        * dataTables
+        */
+        Yajra\Datatables\DatatablesServiceProvider::class,
     ],
 
     /*

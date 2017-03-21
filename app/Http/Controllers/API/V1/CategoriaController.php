@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API\V1;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Categoria;
+use Yajra\Datatables\Facades\Datatables;
 
 class CategoriaController extends Controller
 {
@@ -23,10 +24,10 @@ class CategoriaController extends Controller
      */
     public function index()
     {
-        //$categorias = $this->categoria->all(); // retorna tudo sem paginação
-        $categorias = $this->categoria->paginate($this->regPerPage); // retorna tudo com paginação
-
-        return response()->json(['categorias' => $categorias], 200);
+        $categorias = $this->categoria->all(); // retorna tudo sem paginação
+        //dd($categorias);
+        return Datatables::of($categorias)->make(true);
+        return Datatables::collection($categorias)->make(true);
     }
 
     /**
