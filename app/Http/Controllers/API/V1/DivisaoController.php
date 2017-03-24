@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API\V1;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Divisao;
+use Yajra\Datatables\Facades\Datatables;
 
 class DivisaoController extends Controller
 {
@@ -23,10 +24,10 @@ class DivisaoController extends Controller
     */
     public function index()
     {
-        //$divisaos = $this->divisao->all(); // retorna tudo sem paginação
-        $divisaos = $this->divisao->paginate($this->regPerPage); // retorna tudo com paginação
-
-        return response()->json(['divisaos' => $divisaos], 200);
+        $divisaos = $this->divisao->all(); // retorna tudo sem paginação
+        //dd($divisaos);
+        return Datatables::of($divisaos)->make(true);
+        return Datatables::collection($divisaos)->make(true);
     }
 
     /**
