@@ -6,9 +6,11 @@
     "type": "project",
     "require": {
         "php": ">=5.6.4",
+        "bacon/bacon-qr-code": "~1.0",
         "barryvdh/laravel-cors": "^0.8.5",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
+        "pragmarx/google2fa": "^1.0",
         "tymon/jwt-auth": "0.5.*",
         "yajra/laravel-datatables-oracle": "^7.3"
     },

@@ -191,6 +191,11 @@ return [
         * dataTables
         */
         Yajra\Datatables\DatatablesServiceProvider::class,
+
+         /*
+        * Google2FA
+        */
+        PragmaRX\Google2FA\Vendor\Laravel\ServiceProvider::class,
     ],
 
     /*
@@ -245,6 +250,11 @@ return [
         */
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
+
+        /*
+        * aliases Google2FA
+        */
+        'Google2FA' => PragmaRX\Google2FA\Vendor\Laravel\Facade::class,
     ],
 
 ];
