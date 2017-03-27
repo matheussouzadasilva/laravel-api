@@ -132,22 +132,8 @@ class CategoriaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function search(Request $request)
+    public function listarTudo()
     {
-        $data = $request->all();
-
-        $validate = validator($data, $this->categoria->rulesSearch());
-
-        if ( $validate->fails() ) {
-            $messages = $validate->messages();
-
-            return response()->json(['validate_error' => $messages], 422);
-        }
-
-        //->where('name', 'LIKE', $data['key-search'])
-
-        $categorias = $this->categoria->search($data, $this->regPerPage);
-
-        return response()->json(['categorias' => $categorias]);
+        return response()->json(['categorias' => $this->categoria->all()], 200);
     }
 }

@@ -27,6 +27,7 @@ class CreateCategoriasTable extends Migration
      */
     public function down()
     {
+        Schema::dropForeign(['time_codigo_categoria_foreign']);
         Schema::dropIfExists('categoria');
     }
 }

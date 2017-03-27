@@ -130,22 +130,8 @@ class DivisaoController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-    public function search(Request $request)
+    public function listarTudo()
     {
-        $data = $request->all();
-
-        $validate = validator($data, $this->divisao->rulesSearch());
-
-        if ( $validate->fails() ) {
-            $messages = $validate->messages();
-
-            return response()->json(['validate_error' => $messages], 422);
-        }
-
-        //->where('name', 'LIKE', $data['key-search'])
-
-        $divisaos = $this->divisao->search($data, $this->regPerPage);
-
-        return response()->json(['divisaos' => $divisaos], 200);
+        return response()->json(['divisaos' => $this->divisao->all()], 200);
     }
 }

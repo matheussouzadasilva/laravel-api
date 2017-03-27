@@ -27,6 +27,7 @@ class CreateDivisaoTable extends Migration
      */
     public function down()
     {
+        Schema::dropForeign(['time_codigo_divisao_foreign']);
         Schema::dropIfExists('divisao');
     }
 }

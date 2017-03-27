@@ -15,7 +15,7 @@ class CreateTecnicoTable extends Migration
     {
         Schema::create('tecnico', function (Blueprint $table) {
             $table->increments('codigo_tecnico');
-            $table->string('nome', 30);
+            $table->string('nome', 30)->unique();
             $table->date('data_nascimento');
             $table->timestamps();
         });
@@ -28,6 +28,7 @@ class CreateTecnicoTable extends Migration
      */
     public function down()
     {
+        Schema::dropForeign(['time_codigo_tecnico_foreign']);
         Schema::dropIfExists('tecnico');
     }
 }

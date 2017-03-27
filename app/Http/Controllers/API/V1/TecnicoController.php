@@ -133,23 +133,9 @@ class TecnicoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function search(Request $request)
+    public function listarTudo()
     {
-        $data = $request->all();
-
-        $validate = validator($data, $this->tecnico->rulesSearch());
-
-        if ( $validate->fails() ) {
-            $messages = $validate->messages();
-
-            return response()->json(['validate_error' => $messages], 422);
-        }
-
-        //->where('name', 'LIKE', $data['key-search'])
-
-        $tecnicos = $this->tecnico->search($data, $this->regPerPage);
-
-        return response()->json(['tecnicos' => $tecnicos]);
+        return response()->json(['tecnicos' => $this->tecnico->all()], 200);
     }
     
 }
