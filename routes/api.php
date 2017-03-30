@@ -26,7 +26,7 @@ $this->group(['prefix' => 'v1'], function(){
 
 		$this->get('logado', 'Auth\AuthApiController@logado');
 		$this->get('logout', 'Auth\AuthApiController@logout');
-		$this->post('altsenhalog', 'Auth\AuthApiController@alterarsenha');
+		$this->put('altsenhalog', 'Auth\AuthApiController@alterarsenha');
 
 		$this->get('products/search', 'API\V1\ProductController@search');
 		$this->resource('products', 'API\V1\ProductController', $except);

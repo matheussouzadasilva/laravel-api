@@ -87,6 +87,20 @@ class AuthApiController extends Controller
     }
 
     /**
+     * Get a validator for an incoming registration request.
+     *
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validaSenhaLogado()
+    {
+        return  [
+            'password_current' => 'required|min:6',//senha atual
+            'password' => 'required|min:6|confirmed',//nova senha
+            'password_confirmation' => 'required|min:6|same:password'//confirmacao nova senha
+        ];
+    }
+
+    /**
      * altera a senha do usuario que esta logado
      *
      */
@@ -98,7 +112,7 @@ class AuthApiController extends Controller
 
         $data = $request->json()->all();
 
-        $validate = validator($data, $this->validasenha());
+        $validate = validator($data, $this->validaSenhaLogado());
 
         if ($validate->fails()) {
             $messages = $validate->messages();
@@ -111,7 +125,7 @@ class AuthApiController extends Controller
         ]);
 
         if (!$check) {
-            return response()->json(['error' => 'password_current_invalid'], 422);
+            return response()->json(['validate_error' => 'password_current_invalid'], 422);
         }
 
         $id = Auth::id();
@@ -119,7 +133,7 @@ class AuthApiController extends Controller
         $user->password = bcrypt($data["password"]); 
 
         if (!$user->save()) {
-            return response()->json(['error' => 'error_update_password'], 500);
+            return response()->json(['validate_error' => 'error_update_password'], 500);
         }
 
         return response()->json(null, 200);
