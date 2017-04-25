@@ -12,6 +12,7 @@
         "laravel/tinker": "~1.0",
         "pragmarx/google2fa": "^1.0",
         "tymon/jwt-auth": "0.5.*",
+        "unicodeveloper/laravel-password": "^1.0",
         "yajra/laravel-datatables-oracle": "^7.3"
     },
     "require-dev": {

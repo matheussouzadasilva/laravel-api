@@ -192,10 +192,15 @@ return [
         */
         Yajra\Datatables\DatatablesServiceProvider::class,
 
-         /*
+        /*
         * Google2FA
         */
         PragmaRX\Google2FA\Vendor\Laravel\ServiceProvider::class,
+
+        /*
+        * laravel-password 10 mil senhas mais comuns que não podem ser utilizadas
+        */
+        Unicodeveloper\DumbPassword\DumbPasswordServiceProvider::class,
     ],
 
     /*

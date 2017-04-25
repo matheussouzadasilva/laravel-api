@@ -83,8 +83,8 @@ class RegisterController extends Controller
         return  [
             'name' => "required|min:3|max:255|unique:users,name,{$id},id",
             'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
-            'password_confirmation' => 'required|min:6'
+            'password' => 'required|min:6|dumbpwd|confirmed',
+            'password_confirmation' => 'required|min:6|dumbpwd'
         ];
     }
 
