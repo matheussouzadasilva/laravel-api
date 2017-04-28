@@ -10,6 +10,8 @@ use Tymon\JWTAuth\Exceptions\TokenInvalidException;
 use Illuminate\Support\Facades\Auth;
 //use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OrderShipped;
 use App\User;
 
 class AuthApiController extends Controller
@@ -83,12 +85,19 @@ class AuthApiController extends Controller
         
         $id = DB::table('users')->where('email', $data["email"])->first()->id;
         $user = User::find($id);
-        $user->forgot_token = "z77f22acadcd95e7a38b01d3e42a05af3df022b8cee00970653c044e35522cf1"; 
+        
+        $rand1 = substr(md5(mt_rand()), -32);
+        $rand2 = substr(hash('sha256',mt_rand()), 0, 32);
+        $unique = $rand2.$rand1;
+        
+        $user->forgot_token = $unique; 
 
         if (!$user->save()) {
             return response()->json(['validate_error' => 'error_update_forgot_password'], 500);
         }
-
+        
+        $arrParams["url"] = "http://192.168.33.10/client-laravel-api/adm/formularios/resetar.senha.htm?forgottk=".$user->forgot_token;
+        Mail::to($data["email"])->send(new OrderShipped($arrParams));
         return response()->json(null, 200);
     }
     
@@ -108,16 +117,25 @@ class AuthApiController extends Controller
             return response()->json(['validate_error' => $messages], 422);
         }
         
-        $id = DB::table('users')->where('forgot_token', $data["forgot_token"])->first()->id;
-        $user = User::find($id);
-        $user->password = bcrypt($data["password"]); 
-        $user->forgot_token = NULL;
-
-        if (!$user->save()) {
-            return response()->json(['validate_error' => 'error_update_password'], 500);
+        $id = 0;
+        
+        if (array_key_exists("forgot_token", $data)) {
+            $id = DB::table('users')->where('forgot_token', $data["forgot_token"])->first()->id;
         }
+        
+        if ($id > 0) {
+            $user = User::find($id);
+            $user->password = bcrypt($data["password"]); 
+            $user->forgot_token = NULL;
 
-        return response()->json(null, 200);
+            if (!$user->save()) {
+                return response()->json(['validate_error' => 'error_update_password'], 500);
+            }
+            
+            return response()->json(null, 200);
+        }
+        
+        return response()->json(['validate_error' => 'error_update_password'], 500);
     }
 
     public function refreshToken(Request $request)
