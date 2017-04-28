@@ -140,26 +140,12 @@ class AuthApiController extends Controller
      *
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validasenha()
-    {
-        return  [
-            'password_current' => 'required|min:6',//senha atual
-            'password' => 'required|min:6|confirmed',//nova senha
-            'password_confirmation' => 'required|min:6'//confirmacao nova senha
-        ];
-    }
-
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
     protected function validaAlteracaoSenha()
     {
         return  [
             'password_current' => 'required|min:6',//senha atual
-            'password' => 'required|min:6|confirmed',//nova senha
-            'password_confirmation' => 'required|min:6|same:password'//confirmacao nova senha
+            'password' => 'required|min:6|dumbpwd|confirmed',//nova senha
+            'password_confirmation' => 'required|min:6|dumbpwd|same:password'//confirmação nova senha
         ];
     }
 

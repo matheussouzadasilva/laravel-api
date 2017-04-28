@@ -81,10 +81,10 @@ class RegisterController extends Controller
     protected function valida($id = '')
     {
         return  [
-            'name' => "required|min:3|max:255|unique:users,name,{$id},id",
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|dumbpwd|confirmed',
-            'password_confirmation' => 'required|min:6|dumbpwd'
+            'name' => "required|min:3|max:255|unique:users,name,{$id},id",//nome do usuario
+            'email' => 'required|email|max:255|unique:users',//email do usuario
+            'password' => 'required|min:6|dumbpwd|confirmed',//senha do usuario
+            'password_confirmation' => 'required|min:6|dumbpwd|same:password'//confirmação de senha do usuario
         ];
     }
 
