@@ -111,7 +111,7 @@ class AuthApiController extends Controller
         $id = DB::table('users')->where('forgot_token', $data["forgot_token"])->first()->id;
         $user = User::find($id);
         $user->password = bcrypt($data["password"]); 
-        $user->forgot_token = "";
+        $user->forgot_token = NULL;
 
         if (!$user->save()) {
             return response()->json(['validate_error' => 'error_update_password'], 500);
