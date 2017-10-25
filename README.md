@@ -1,5 +1,5 @@
 # laravel-api
-RestFull Api em laravel 5.4
+RestFull Api em Laravel 5.5
 
 # instalação
 - Criar uma pasta chamada "Models" na pasta "app" 
