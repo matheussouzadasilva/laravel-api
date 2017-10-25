@@ -5,7 +5,7 @@ namespace App\Http\Controllers\API\V1;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Categoria;
-use Yajra\Datatables\Facades\Datatables;
+use DataTables;
 
 class CategoriaController extends Controller
 {
@@ -26,8 +26,8 @@ class CategoriaController extends Controller
     {
         $categorias = $this->categoria->all(); // retorna tudo sem paginação
         //dd($categorias);
-        return Datatables::of($categorias)->make(true);
-        return Datatables::collection($categorias)->make(true);
+        return DataTables::of($categorias)->make(true);
+        return DataTables::collection($categorias)->make(true);
     }
 
     /**

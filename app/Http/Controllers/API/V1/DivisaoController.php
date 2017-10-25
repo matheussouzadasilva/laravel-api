@@ -5,7 +5,7 @@ namespace App\Http\Controllers\API\V1;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Divisao;
-use Yajra\Datatables\Facades\Datatables;
+use DataTables;
 
 class DivisaoController extends Controller
 {
@@ -26,8 +26,8 @@ class DivisaoController extends Controller
     {
         $divisaos = $this->divisao->all(); // retorna tudo sem paginação
         //dd($divisaos);
-        return Datatables::of($divisaos)->make(true);
-        return Datatables::collection($divisaos)->make(true);
+        return DataTables::of($divisaos)->make(true);
+        return DataTables::collection($divisaos)->make(true);
     }
 
     /**

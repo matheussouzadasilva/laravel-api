@@ -192,10 +192,7 @@ return [
         */
         Yajra\Datatables\DatatablesServiceProvider::class,
 
-        /*
-        * Google2FA
-        */
-        PragmaRX\Google2FA\Vendor\Laravel\ServiceProvider::class,
+
 
         /*
         * laravel-password 10 mil senhas mais comuns que não podem ser utilizadas
@@ -256,10 +253,8 @@ return [
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
 
-        /*
-        * aliases Google2FA
-        */
-        'Google2FA' => PragmaRX\Google2FA\Vendor\Laravel\Facade::class,
+        'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+        
     ],
 
 ];

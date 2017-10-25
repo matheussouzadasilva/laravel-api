@@ -5,7 +5,7 @@ namespace App\Http\Controllers\API\V1;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Tecnico;
-use Yajra\Datatables\Facades\Datatables;
+use DataTables;
 
 class TecnicoController extends Controller
 {
@@ -26,8 +26,9 @@ class TecnicoController extends Controller
     {
         $tecnicos = $this->tecnico->all(); // retorna tudo sem paginação
         //dd($tecnicos);
-        return Datatables::of($tecnicos)->make(true);
-        return Datatables::collection($tecnicos)->make(true);
+
+        return DataTables::of($tecnicos)->make(true);
+        //return DataTables::collection($tecnicos)->make(true);
     }
 
     /**

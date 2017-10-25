@@ -5,7 +5,7 @@ namespace App\Http\Controllers\API\V1;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Time;
-use Yajra\Datatables\Facades\Datatables;
+use DataTables;
 use Illuminate\Support\Facades\Storage;
 
 class TimeController extends Controller
@@ -27,8 +27,8 @@ class TimeController extends Controller
     {
         $times = $this->time->all(); // retorna tudo sem paginação
         //dd($times);
-        return Datatables::of($times)->make(true);
-        return Datatables::collection($times)->make(true);
+        return DataTables::of($times)->make(true);
+        return DataTables::collection($times)->make(true);
     }
 
     /**

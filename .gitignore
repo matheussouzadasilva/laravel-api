@@ -3,6 +3,7 @@
 /public/uploads/images
 /public/hot
 /storage/*.key
+/storage
 /vendor
 /.idea
 Homestead.json
