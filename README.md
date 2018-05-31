@@ -1,5 +1,5 @@
 # laravel-api
-RestFull Api em Laravel 5.5
+RestFull Api em Laravel 5.6
 
 # instalação
 - Criar uma pasta chamada "Models" na pasta "app" 
@@ -18,9 +18,3 @@ RestFull Api em Laravel 5.5
 - Para criar as tabelas executar o comando "php artisan migrate" no diretório principal da aplicação
 - Caso precisar criar de novo as tabelas e preencher com dados , executar o comando "php artisan migrate:refresh --seed" no diretório principal da aplicação
 - Para para inserir um usuário, produtos, categorias nas tabelas executar o comando  "php artisan db:seed"  no diretório principal da aplicação
-
-Meu perfil no linkedin(http://br.linkedin.com/in/matheussilvaphp)
-
-
-
-
